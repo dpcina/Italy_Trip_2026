@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Italy 2026 — Davide & Alexis</title>
+  <style>
+    :root {
+      --cream: #faf7f2;
+      --sand: #e8dfd0;
+      --terracotta: #c0622f;
+      --terracotta-light: #d97b4a;
+      --olive: #5c6b3a;
+      --olive-light: #7a8f4e;
+      --charcoal: #2c2c2c;
+      --muted: #6b6560;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(160deg, #1a1208 0%, #3b2510 50%, #c0622f 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 80px 24px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: normal;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .hero-dates {
+      font-size: 1.05rem;
+      opacity: 0.8;
+      margin-bottom: 32px;
+    }
+    .hero-route {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      max-width: 560px;
+      line-height: 2;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--charcoal);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px 18px;
+      white-space: nowrap;
+      transition: color 0.2s, background 0.2s;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    nav a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+
+    /* GLANCE TABLE */
+    .glance {
+      background: var(--white);
+      padding: 48px 24px;
+    }
+    .glance-inner { max-width: 860px; margin: 0 auto; }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 2px solid var(--sand);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--sand);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { color: var(--muted); white-space: nowrap; }
+    td:nth-child(2) { font-weight: 600; }
+    .tag-special {
+      display: inline-block;
+      background: var(--terracotta);
+      color: white;
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-left: 6px;
+      letter-spacing: 0.5px;
+    }
+    .tag-fixed {
+      display: inline-block;
+      background: var(--olive);
+      color: white;
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-left: 6px;
+    }
+
+    /* SECTION BLOCKS */
+    .chapter {
+      background: var(--white);
+      padding: 48px 24px 56px;
+    }
+    .chapter-inner { max-width: 860px; margin: 0 auto; }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: normal;
+      color: var(--charcoal);
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    /* DAY CARDS */
+    .day {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--sand);
+    }
+    .day:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .day-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .day-date {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .day-title {
+      font-size: 1.2rem;
+      font-weight: normal;
+    }
+
+    .day p {
+      color: var(--muted);
+      font-size: 0.93rem;
+      margin-bottom: 10px;
+    }
+    .day p:last-child { margin-bottom: 0; }
+
+    .day strong { color: var(--charcoal); }
+
+    .lodging {
+      background: var(--cream);
+      border-left: 3px solid var(--olive-light);
+      padding: 10px 14px;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-radius: 0 4px 4px 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .lodging strong { color: var(--olive); }
+
+    /* BIRTHDAY (REDACTED) */
+    .birthday-day {
+      background: linear-gradient(135deg, #fdf6ee 0%, #fdebd8 100%);
+      border: 1px solid #e8c9a0;
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 40px;
+    }
+    .birthday-day .day-date { color: var(--terracotta); }
+    .redacted-block {
+      margin-top: 18px;
+      background: var(--charcoal);
+      color: var(--charcoal);
+      border-radius: 6px;
+      padding: 22px;
+      text-align: center;
+      letter-spacing: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.8rem;
+      user-select: none;
+    }
+    .redacted-note {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* PRACTICAL */
+    .practical {
+      padding: 56px 24px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .practical h2 { margin-bottom: 28px; }
+    .note-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .note-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 18px 20px;
+      font-size: 0.85rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .note-card-title {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .note-card p { color: var(--muted); line-height: 1.6; }
+
+    /* FOOTER */
+    footer {
+      background: #1a1208;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.75rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    em { font-style: italic; color: inherit; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 56px 20px 48px; }
+      h2 { font-size: 1.3rem; }
+      .birthday-day { padding: 20px; }
+      td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-eyebrow">August 31 – September 21, 2026</p>
+  <h1>Italy</h1>
+  <p class="hero-dates">Davide &amp; Alexis &nbsp;·&nbsp; 22 days</p>
+  <p class="hero-route">Sicily &nbsp;·&nbsp; Aeolian Islands &nbsp;·&nbsp; Etna &nbsp;·&nbsp; Catania &nbsp;·&nbsp; Cefalù &nbsp;·&nbsp; Palermo &nbsp;·&nbsp; Florence &nbsp;·&nbsp; Chianti &nbsp;·&nbsp; Siena &nbsp;·&nbsp; Montalcino &nbsp;·&nbsp; Val d'Orcia &nbsp;·&nbsp; Saturnia &nbsp;·&nbsp; Rome</p>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#glance">At a Glance</a>
+  <a href="#sicily">Sicily</a>
+  <a href="#cefalu">Cefalù &amp; Palermo</a>
+  <a href="#florence">Florence</a>
+  <a href="#tuscany">Tuscany</a>
+  <a href="#rome">Rome</a>
+  <a href="#budget">Budget</a>
+</nav>
+
+<!-- AT A GLANCE -->
+<section id="glance" class="glance">
+  <div class="glance-inner">
+    <p class="section-label">At a Glance</p>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Location</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Aug 31</td><td>In transit</td><td>Overnight flight from Canada</td></tr>
+        <tr><td>Sep 1</td><td>CTA → Milazzo</td><td>Land CTA morning · drive to Milazzo</td></tr>
+        <tr><td>Sep 2</td><td>Panarea</td><td>Hydrofoil from Milazzo</td></tr>
+        <tr><td>Sep 3</td><td>Stromboli</td><td>Sciara del Fuoco sunset boat</td></tr>
+        <tr><td>Sep 4</td><td>Vulcano</td><td>MG &amp; dad head home · sulfur baths</td></tr>
+        <tr><td>Sep 5–6</td><td>Etna</td><td>Palmento Costanzo winery · Gole dell'Alcantara · Taormina</td></tr>
+        <tr><td>Sep 7</td><td>Catania</td><td>🎉 Isabella's engagement party</td></tr>
+        <tr><td>Sep 8</td><td>Cefalù</td><td>Drive from Catania (~2h)</td></tr>
+        <tr><td>Sep 9</td><td>Palermo</td><td>Full city day</td></tr>
+        <tr><td>Sep 10</td><td>Scopello / Zingaro</td><td>Hike + beach day trip</td></tr>
+        <tr><td>Sep 11</td><td>Florence</td><td>Fly PMO → FLR · Ponte Vecchio · Uffizi</td></tr>
+        <tr><td>Sep 12</td><td>Florence</td><td>David · Duomo · Oltrarno</td></tr>
+        <tr><td>Sep 13</td><td>Florence</td><td>🎂 Alexis' Birthday <span class="tag-special">Special day</span></td></tr>
+        <tr><td>Sep 14</td><td>Castellina in Chianti</td><td>Antinori tasting · Panzano lunch · Castello di Fonterutoli</td></tr>
+        <tr><td>Sep 15</td><td>Montalcino</td><td>Siena morning · Castello Banfi tasting</td></tr>
+        <tr><td>Sep 16</td><td>Val d'Orcia</td><td>Pienza · Belvedere · Sant'Antimo</td></tr>
+        <tr><td>Sep 17</td><td>Montepulciano</td><td>Vino Nobile · Porta di Bacco · relaxed afternoon</td></tr>
+        <tr><td>Sep 18</td><td>Saturnia → Rome</td><td>Hot springs en route · Pantheon · Trevi</td></tr>
+        <tr><td>Sep 19</td><td>Rome</td><td>Colosseum · Forum · Palatine</td></tr>
+        <tr><td>Sep 20</td><td>Rome</td><td>Vatican · Sistine · Trastevere</td></tr>
+        <tr><td>Sep 21</td><td>Depart FCO</td><td>Fly home</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SICILY -->
+<section id="sicily" class="chapter">
+  <div class="chapter-inner">
+    <p class="section-label">Aug 31 – Sep 7</p>
+    <h2>Sicily &amp; the Aeolian Islands</h2>
+
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 32px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">MG and dad join for the Aeolian loop, heading home Sep 4 from Vulcano.</p>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Mon Aug 31</span>
+        <span class="day-title">In transit — overnight flight from Canada</span>
+      </div>
+      <p>Overnight flight from Canada. Most of this day is in the air — no activities planned.</p>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Tue Sep 1</span>
+        <span class="day-title">Land CTA → drive to Milazzo</span>
+      </div>
+      <p>Land at <strong>Catania (CTA)</strong> in the morning, collect the rental car, drive straight to <strong>Milazzo</strong> (~2h north). After the long flight, keep it easy: check in, short walk up to the <strong>Castello di Milazzo</strong> for views of the Aeolians on the horizon if there's energy. Espresso at <strong>Bar San Filippo</strong> on the seafront. Early dinner, early night — hydrofoil to Panarea tomorrow morning.</p>
+      <div class="lodging"><strong>Lodging:</strong> Hotel Riviera Lido — breakfast right on the beach.</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Wed Sep 2</span>
+        <span class="day-title">Milazzo → Panarea</span>
+      </div>
+      <p>Morning hydrofoil <strong>Milazzo → Panarea</strong> (~1h30). Panarea is the smallest and most exclusive of the Aeolians — whitewashed houses, black-rock coves, no cars. Hike to <strong>Cala Junco</strong> and explore the <strong>Bronze Age village ruins at Punta Milazzese</strong>. Dinner at <strong>Hyccara</strong>.</p>
+      <div class="lodging"><strong>Lodging:</strong> ✅ Eunymos Panarea (booked).</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Thu Sep 3</span>
+        <span class="day-title">Panarea → Stromboli + Sciara del Fuoco sunset</span>
+      </div>
+      <p>Morning hydrofoil <strong>Panarea → Stromboli</strong> (~30 min). Beach at <strong>Ficogrande</strong> (black volcanic sand). Sunset: <strong>boat tour to the Sciara del Fuoco</strong> — watch lava cascade into the sea as the sun drops. <em>The</em> definitive Stromboli experience.</p>
+      <div class="lodging"><strong>Lodging:</strong> ✅ Hotel Miramare (booked).</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Fri Sep 4</span>
+        <span class="day-title">Stromboli → Vulcano (MG &amp; dad head home)</span>
+      </div>
+      <p>Optional morning: guided <strong>Magmatrek summit hike</strong> before departure. MG and dad take their ferry home today. Afternoon hydrofoil <strong>Stromboli → Vulcano</strong> (via Lipari). Evening: <strong>sulfur mud baths</strong> (Piscine di Venere), swim at <strong>Spiaggia dell'Asino</strong>, aperitivo at the port.</p>
+      <div class="lodging"><strong>Lodging:</strong> Therasia Resort.</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Sat Sep 5</span>
+        <span class="day-title">Vulcano → Milazzo → Etna winery</span>
+      </div>
+      <p>Optional early morning: <strong>Gran Cratere hike</strong> before the hydrofoil. Drive south to <strong>Palmento Costanzo</strong> on Etna's northern slopes — 2-night winery stay.</p>
+      <div class="lodging"><strong>Lodging:</strong> Palmento Costanzo.</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Sun Sep 6</span>
+        <span class="day-title">Gole dell'Alcantara + Taormina</span>
+      </div>
+      <p><strong>Morning:</strong> drive down to the <strong>Gole dell'Alcantara</strong> — dramatic basalt lava gorges carved by the Alcantara River, walls up to 25m high. Walk into the gorge, wade in the cool turquoise water. Bring water shoes.</p>
+      <p><strong>Afternoon:</strong> continue to <strong>Taormina</strong> — <strong>Teatro Greco</strong> with the volcano backdrop. Corso Umberto, granita stop, swim at <strong>Isola Bella</strong>. Return to the winery for sunset dinner.</p>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Mon Sep 7</span>
+        <span class="day-title">🎉 Isabella's engagement party — Catania</span>
+      </div>
+      <p>Drive to family (~45 min). Full day with family. Engagement party this evening.</p>
+      <div class="lodging"><strong>Lodging:</strong> Grand Hotel Villa Itria.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CEFALU & PALERMO -->
+<section id="cefalu" style="background: var(--cream); padding: 56px 24px;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <p class="section-label">Sep 8 – Sep 10</p>
+    <h2>Cefalù · Palermo · Scopello</h2>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Tue Sep 8</span>
+        <span class="day-title">Drive to Cefalù</span>
+      </div>
+      <p>Drive northwest from Catania (~2h). Explore the medieval old town: Norman <strong>Duomo</strong> (Byzantine mosaics), the <strong>Lavatoio medievale</strong>, and a climb up <strong>La Rocca</strong> for sweeping views. Sunset stroll along Cefalù beach.</p>
+      <div class="lodging"><strong>Lodging:</strong> Hotel Kalura (own bay, pool + sea access) or Hotel Le Calette (boutique, private cove).</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Wed Sep 9</span>
+        <span class="day-title">Drive to Palermo · full city day</span>
+      </div>
+      <p>Drive west (~1h). Full day in Sicily's chaotic, beautiful capital: <strong>Vucciria</strong> and <strong>Ballarò</strong> markets, <strong>Cattedrale di Palermo</strong>, <strong>Palazzo dei Normanni / Cappella Palatina</strong>. Lunch at <strong>Spinnato</strong> on Via Principe di Belmonte. Dinner: <strong>Ferramenta</strong>, a stylish trattoria near Piazza Olivella.</p>
+      <div class="lodging"><strong>Lodging:</strong> La Terrazza B&amp;B.</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Thu Sep 10</span>
+        <span class="day-title">Scopello / Riserva dello Zingaro hike</span>
+      </div>
+      <p>Day trip west (~1h) to <strong>Scopello</strong> — a tiny fishing hamlet built around a 16th-century tonnara. Walk down to <strong>Cala Bianca</strong>: turquoise water, dramatic rock stacks. Hike into the <strong>Riserva Naturale dello Zingaro</strong> — Sicily's first nature reserve, a 7km coastal trail with hidden coves. Bring water, trail shoes, snorkeling gear. Early night before the morning flight.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLORENCE -->
+<section id="florence" class="chapter">
+  <div class="chapter-inner">
+    <p class="section-label">Sep 11 – Sep 13</p>
+    <h2>Florence</h2>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Fri Sep 11</span>
+        <span class="day-title">Fly Palermo → Florence · arrive &amp; explore</span>
+      </div>
+      <p>Morning flight <strong>PMO → Florence</strong>. Land, drop bags at the apartment. Walk straight into the historic center: cross the <strong>Ponte Vecchio</strong>, through to <strong>Piazza della Signoria</strong> and the <strong>Loggia dei Lanzi</strong> — an open-air sculpture gallery, entirely free. Coffee at Gilli or Paszkowski on Piazza della Repubblica.</p>
+      <p><strong>Afternoon — Uffizi Gallery</strong> (timed-entry ticket). Botticelli's Birth of Venus and Primavera, Caravaggio, the long corridor of Renaissance masterpieces. Book a slot online in advance to skip the line.</p>
+      <p>Late afternoon: walk up to <strong>Piazzale Michelangelo</strong> for the best panoramic view in the city. If there's energy, <strong>San Miniato al Monte</strong> just above is quieter and even more beautiful. Dinner: <strong>Trattoria Cammillo</strong> or <strong>Buca Mario</strong>.</p>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Sat Sep 12</span>
+        <span class="day-title">Florence at your own pace</span>
+      </div>
+      <p><strong>Early morning — Galleria dell'Accademia</strong> (open from 8:15am). Michelangelo's David in person — go right at opening to beat the crowds. 45 min–1 hour is enough.</p>
+      <p>Then: <strong>Brunelleschi's Cupola</strong> — climb the 463 steps through the narrow passage between the inner and outer shells of the dome, 360° views of Florence from the lantern at the top. Then wander to <strong>San Lorenzo market</strong> — leather stalls, ceramics, the covered food market upstairs. Lunch: <strong>All'Antico Vinaio</strong> on Via dei Neri.</p>
+      <p>Afternoon: deep dive into <strong>Oltrarno</strong> — Via dello Sprone, <strong>Piazza Santo Spirito</strong>, leather workshops on Borgo San Jacopo, bookbinding and ceramics shops. <strong>Bardini Gardens</strong> for greenery and a hilltop view without the Boboli crowds. Aperitivo: <strong>La Terrazza</strong> rooftop bar of Hotel Continentale — best view of Ponte Vecchio in the city. Early dinner, early night.</p>
+    </div>
+
+    <!-- BIRTHDAY DAY (REDACTED) -->
+    <div class="birthday-day">
+      <div class="day-header">
+        <span class="day-date">Sun Sep 13</span>
+        <span class="day-title">🎂 Alexis' Birthday</span>
+      </div>
+      <div class="redacted-block">
+        ████████████████████████████████<br>
+        ████████ Davide has this covered ████████<br>
+        ████████████████████████████████
+      </div>
+      <p class="redacted-note">Just know you need to be up early. Wear something you don't mind getting cold in at dawn. Everything else is taken care of. 🎂</p>
+    </div>
+  </div>
+</section>
+
+<!-- TUSCANY -->
+<section id="tuscany" style="background: var(--cream); padding: 56px 24px;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <p class="section-label">Sep 14 – Sep 17</p>
+    <h2>Tuscany Road Trip</h2>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Mon Sep 14</span>
+        <span class="day-title">Chianti drive · Antinori tasting · Panzano lunch → Castello di Fonterutoli</span>
+      </div>
+      <p>Pick up rental car in Florence. First stop: <strong>Antinori nel Chianti Classico</strong> in Bargino — striking architecture cut into the hillside, tasting of three signature wines. Continue to <strong>Greve in Chianti</strong> — Piazza Matteotti, <strong>Enoteca Falorni</strong>. Lunch: <strong>Antica Macelleria Cecchini</strong> in Panzano. Arrive at <strong>Castello di Fonterutoli</strong> (Mazzei Wine Resort, Castellina in Chianti) by early evening — check in, estate wine tasting, dinner on site or in the medieval hamlet.</p>
+      <div class="lodging"><strong>Lodging:</strong> Castello di Fonterutoli — Mazzei Wine Resort ✓ Booked. <a href="https://us.mazzei.it/pages/wine-resort" target="_blank" rel="noopener">us.mazzei.it</a></div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Tue Sep 15</span>
+        <span class="day-title">Siena morning → Montalcino → Castello Banfi tasting</span>
+      </div>
+      <p>Morning: drive to <strong>Siena</strong> (~20 min from Fonterutoli) — Duomo (inlaid marble floor), Piazza del Campo, Enoteca Italiana for a pre-lunch glass. Afternoon: drive south to <strong>Montalcino</strong> for a <strong>Brunello di Montalcino tasting at Castello Banfi</strong> — hilltop castle, terrace views.</p>
+      <div class="lodging"><strong>Lodging (3 nights, Sep 15–17):</strong> ✅ Corte Francigena.</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Wed Sep 16</span>
+        <span class="day-title">Val d'Orcia — the Gladiator landscape</span>
+      </div>
+      <p><em>Ridley Scott filmed Maximus running through the wheat fields here — the Val d'Orcia in September looks exactly like the film: golden light, rolling hills, lone cypress trees, absolute silence. Drive slowly. Stop often.</em></p>
+      <p>Morning drive to <strong>Pienza</strong> — walk the Corso Rossellino, Duomo terrace views, pecorino from the cheese shops. Lunch: <strong>Latte di Luna</strong>. Drive back along the <strong>SP146</strong> — the most scenic road in Tuscany. Pull over at the <strong>Podere Belvedere viewpoint</strong>.</p>
+      <p>Afternoon — see how you feel: optional detour to <strong>Abbazia di Sant'Antimo</strong>, a breathtaking 12th-century Romanesque abbey alone in an olive grove. Or head back for a long afternoon at the pool and an early dinner.</p>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Thu Sep 17</span>
+        <span class="day-title">Montepulciano · Porta di Bacco · recharge afternoon</span>
+      </div>
+      <p>Morning: <strong>Montepulciano</strong> — medieval hilltop city, home of Vino Nobile. Browse the medieval corso, visit <strong>Piazza Grande</strong>, drop into a cellar for a tasting. Lunch: <strong>Porta di Bacco</strong>. Afternoon: no agenda — wander, pool, aperitivo in town, early dinner. Wind-down day before Rome.</p>
+      <div class="lodging"><strong>Lodging:</strong> ✅ Corte Francigena (3rd night).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROME -->
+<section id="rome" class="chapter">
+  <div class="chapter-inner">
+    <p class="section-label">Sep 18 – Sep 21</p>
+    <h2>Rome</h2>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Fri Sep 18</span>
+        <span class="day-title">Saturnia hot springs en route · arrive Rome · Pantheon · Trevi</span>
+      </div>
+      <p>Leave Montepulciano ~9am. Drive to <strong>Saturnia</strong> (~1h15) for the morning at <strong>Cascate del Mulino</strong> — free natural hot spring waterfall pools over white travertine terraces. Arrive early before crowds build, bring water shoes. Leave by 1pm, drive to <strong>Rome</strong> (~2.5h) — in the city by mid-afternoon. <strong>Pantheon</strong>, <strong>Trevi Fountain</strong> (go back after 9pm when lit and quieter), <strong>Piazza Navona</strong> aperitivo. Dinner: <strong>Armando al Pantheon</strong> or <strong>Roscioli</strong>.</p>
+      <div class="lodging"><strong>Lodging (Sep 18–21):</strong> Terlie Tomacelli ✓ Paid.</div>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Sat Sep 19</span>
+        <span class="day-title">Ancient Rome · Colosseum · Forum · Palatine</span>
+      </div>
+      <p><strong>Colosseum + Roman Forum + Palatine</strong> with a guided underground/arena floor tour. Lunch in <strong>Monti</strong> — La Carbonara or Pastificio Guerra. Afternoon: <strong>Capitoline Museums</strong> or a Caravaggio walk. Dinner: <strong>Salumeria Roscioli</strong> or <strong>Trattoria Da Cesare al Casaletto</strong>.</p>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Sun Sep 20</span>
+        <span class="day-title">Vatican · Sistine · St. Peter's · Trastevere</span>
+      </div>
+      <p>Morning: <strong>Vatican Museums + Sistine Chapel + St. Peter's Basilica</strong> — earliest entry slot. Lunch: <strong>Bonci Pizzarium</strong>. Afternoon: <strong>Trastevere</strong> — cobblestone alleys, gelato at <strong>Fior di Luna</strong>, Santa Maria in Trastevere. Final Roman dinner: <strong>Pierluigi</strong> or <strong>Felice a Testaccio</strong>.</p>
+    </div>
+
+    <div class="day">
+      <div class="day-header">
+        <span class="day-date">Mon Sep 21</span>
+        <span class="day-title">Fly home from FCO</span>
+      </div>
+      <p>Transfer to Fiumicino. Final espresso. Fly home. <em>Arrivederci, Italia.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICAL NOTES -->
+<section class="practical">
+  <p class="section-label">Practical Notes</p>
+  <h2>Good to Know</h2>
+  <div class="note-grid">
+    <div class="note-card">
+      <div class="note-card-title">☀️ Weather</div>
+      <p>28–32°C in Sicily &amp; Rome, low 30s Tuscany, cooling by Sep 17–21. Sea at its warmest; September much less crowded than August.</p>
+    </div>
+    <div class="note-card">
+      <div class="note-card-title">🚗 Driving</div>
+      <p>Rental car Sep 1 (CTA) for Milazzo, returned after hydrofoils. Pick up again Sep 14 Florence through Sep 18.</p>
+    </div>
+    <div class="note-card">
+      <div class="note-card-title">🚧 ZTLs</div>
+      <p>Florence, Rome centro storico, Siena, Montepulciano, and Pienza all have restricted traffic zones. Get your hotel to register your plate.</p>
+    </div>
+    <div class="note-card">
+      <div class="note-card-title">♨️ Saturnia</div>
+      <p>Cascate del Mulino is free. Bring water shoes — travertine is very slippery. Arrive by 9:30–10am before crowds build; leave by 1pm.</p>
+    </div>
+    <div class="note-card">
+      <div class="note-card-title">🌿 Zingaro Reserve</div>
+      <p>No food or drink sold inside. Bring 2L+ water each, snacks, trail shoes, snorkeling gear.</p>
+    </div>
+    <div class="note-card">
+      <div class="note-card-title">💶 Cash</div>
+      <p>~€200 for Aeolian boat tours, small trattorias, and Sicilian street food.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget" style="background: var(--cream); padding: 56px 24px;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <p class="section-label">Budget</p>
+    <h2>Accommodation — Night by Night</h2>
+
+    <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+      Confirmed prices in <strong style="color: var(--olive);">green</strong>. Cefalù, Palermo, and Relais Ciavatta are estimates. Rate used: 1 EUR = 1.618 CAD.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Night(s)</th>
+          <th>Location</th>
+          <th>Hotel</th>
+          <th style="text-align:right;">Subtotal (EUR)</th>
+          <th style="text-align:right;">Subtotal (CAD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 1</td>
+          <td>Milazzo</td>
+          <td>Hotel Riviera Lido <span class="tag-fixed">✓</span></td>
+          <td style="text-align:right; color: var(--olive);">€97</td>
+          <td style="text-align:right; color: var(--olive);">CAD $157</td>
+        </tr>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 2</td>
+          <td>Panarea</td>
+          <td>Eunymos Panarea <span class="tag-fixed">✓ Booked</span></td>
+          <td style="text-align:right; color: var(--olive);">€184</td>
+          <td style="text-align:right; color: var(--olive);">CAD $298</td>
+        </tr>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 3</td>
+          <td>Stromboli</td>
+          <td>Hotel Miramare <span class="tag-fixed">✓ Booked</span></td>
+          <td style="text-align:right; color: var(--olive);">€150</td>
+          <td style="text-align:right; color: var(--olive);">CAD $243</td>
+        </tr>
+        <tr style="background: #edf7ed;">
+          <td>Sep 4</td>
+          <td>Vulcano</td>
+          <td>Therasia Resort Sea &amp; Spa <span class="tag-fixed">✓</span> <span style="font-size:0.75rem; color:var(--olive); font-family:sans-serif; font-weight:400;">· via AmexTravel.com (FHR)</span></td>
+          <td style="text-align:right; color: var(--charcoal);">USD $606</td>
+          <td style="text-align:right; color: var(--charcoal);">≈ CAD $830</td>
+        </tr>
+        <tr style="background: #edf7ed;">
+          <td></td>
+          <td></td>
+          <td style="font-size:0.78rem; color:var(--olive); font-family:sans-serif; padding-left: 22px;">↳ Amex statement credit −$300 · on-property credit −$100 · breakfast for two included</td>
+          <td style="text-align:right; font-size:0.82rem; font-weight:600; color:var(--olive);">−$400</td>
+          <td style="text-align:right; font-size:0.82rem; font-weight:600; color:var(--olive);">≈ −CAD $548</td>
+        </tr>
+        <tr style="background: #edf7ed; border-bottom: 2px solid #c8e6c9;">
+          <td></td>
+          <td></td>
+          <td style="font-size:0.78rem; font-weight:700; color:var(--olive); font-family:sans-serif; padding-left: 22px;">Net effective cost</td>
+          <td style="text-align:right; font-size:0.82rem; font-weight:700; color:var(--olive);">~$300 USD</td>
+          <td style="text-align:right; font-size:0.82rem; font-weight:700; color:var(--olive);">≈ CAD $410</td>
+        </tr>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 5–6</td>
+          <td>Etna</td>
+          <td>Palmento Costanzo <span class="tag-fixed">✓ Booked</span></td>
+          <td style="text-align:right; color: var(--olive);">€600</td>
+          <td style="text-align:right; color: var(--olive);">CAD $971</td>
+        </tr>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 7</td>
+          <td>Catania</td>
+          <td>Grand Hotel Villa Itria <span class="tag-fixed">✓</span></td>
+          <td style="text-align:right; color: var(--olive);">€107</td>
+          <td style="text-align:right; color: var(--olive);">CAD $173</td>
+        </tr>
+        <tr>
+          <td>Sep 8</td>
+          <td>Cefalù</td>
+          <td>Hotel Kalura <em style="font-size:0.78rem; color:var(--muted);">(est.)</em></td>
+          <td style="text-align:right;">~€160</td>
+          <td style="text-align:right;">~CAD $259</td>
+        </tr>
+        <tr>
+          <td>Sep 9–10</td>
+          <td>Palermo</td>
+          <td>La Terrazza Palace B&amp;B <em style="font-size:0.78rem; color:var(--muted);">(est.)</em></td>
+          <td style="text-align:right;">~€180</td>
+          <td style="text-align:right;">~CAD $291</td>
+        </tr>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 11–13</td>
+          <td>Florence</td>
+          <td>B52 With a View <span class="tag-fixed">✓ Paid</span></td>
+          <td style="text-align:right; color: var(--olive);">≈ €915</td>
+          <td style="text-align:right; color: var(--olive);">CAD $1,480.71</td>
+        </tr>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 14</td>
+          <td>Castellina in Chianti</td>
+          <td>Castello di Fonterutoli — Mazzei Wine Resort <span class="tag-fixed">✓ Booked</span></td>
+          <td style="text-align:right; color: var(--olive);">€271.52</td>
+          <td style="text-align:right; color: var(--olive);">CAD $439</td>
+        </tr>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 15–17</td>
+          <td>Montalcino area</td>
+          <td>Corte Francigena <span class="tag-fixed">✓ Paid</span></td>
+          <td style="text-align:right; color: var(--olive);">≈ €483</td>
+          <td style="text-align:right; color: var(--olive);">CAD $782.33</td>
+        </tr>
+        <tr style="background: #f5fcf5;">
+          <td>Sep 18–21</td>
+          <td>Rome</td>
+          <td>Terlie Tomacelli <span class="tag-fixed">✓ Paid</span></td>
+          <td style="text-align:right; color: var(--olive);">≈ €687</td>
+          <td style="text-align:right; color: var(--olive);">CAD $1,112.68</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr style="border-top: 2px solid var(--sand);">
+          <td colspan="3" style="padding-top: 14px; font-family: sans-serif; font-size: 0.85rem; color: var(--muted);">Total accommodation (21 nights)</td>
+          <td style="text-align:right; padding-top: 14px; font-weight: bold; color: var(--terracotta); font-size: 1rem;">~€4,860</td>
+          <td style="text-align:right; padding-top: 14px; font-weight: bold; color: var(--terracotta); font-size: 1rem;">CAD $8,035.91</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="padding-top: 6px; font-family: sans-serif; font-size: 0.8rem; color: var(--muted);">Per person</td>
+          <td style="text-align:right; font-family: sans-serif; font-size: 0.85rem; color: var(--muted);">~€2,430</td>
+          <td style="text-align:right; font-family: sans-serif; font-size: 0.85rem; color: var(--muted);">CAD $4,017.96</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- EXPERIENCES BUDGET -->
+    <h2 style="margin-top: 56px;">Experiences &amp; Activities</h2>
+    <table>
+      <thead>
+        <tr><th>Experience</th><th>Date</th><th style="text-align:right;">Est. Cost (2pp)</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background: #fff8f5;">
+          <td colspan="4" style="padding: 0;">
+            <div class="redacted-block" style="margin:8px 0; padding:16px; letter-spacing:3px; font-size:0.72rem;">
+              ████████████████████████████████<br>
+              ████ Sep 13 birthday surprise — see above ████<br>
+              ████████████████████████████████
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Colosseum underground/arena floor tour</td>
+          <td>Sep 19</td>
+          <td style="text-align:right;">~€160</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Magmatrek Stromboli summit hike</td>
+          <td>Sep 4</td>
+          <td style="text-align:right;">~€70–80</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Stromboli sunset boat (Sciara del Fuoco)</td>
+          <td>Sep 3</td>
+          <td style="text-align:right;">~€60</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Aeolian hydrofoils (Liberty Lines)</td>
+          <td>Sep 2–5</td>
+          <td style="text-align:right;">~€120–160</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Antinori Tinaia Tour</td>
+          <td>Sep 14</td>
+          <td style="text-align:right;">~€40–60</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Castello Banfi tasting</td>
+          <td>Sep 15</td>
+          <td style="text-align:right;">~€30–90</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Vatican Museums + Sistine</td>
+          <td>Sep 20</td>
+          <td style="text-align:right;">~€40–60</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Teatro Greco Taormina</td>
+          <td>Sep 6</td>
+          <td style="text-align:right;">~€20–30</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr style="border-top: 2px solid var(--sand);">
+          <td colspan="2" style="padding-top: 14px; font-family: sans-serif; font-size: 0.85rem; color: var(--muted);">Estimated experiences total</td>
+          <td style="text-align:right; padding-top: 14px; font-weight: bold; color: var(--terracotta); font-size: 1rem;" colspan="2">████████ <em style="font-size:0.7rem; color:var(--muted); font-style:italic;">(birthday extras redacted)</em></td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+</section>
+
+<footer>
+  Italy 2026 &nbsp;·&nbsp; Davide &amp; Alexis &nbsp;·&nbsp; Aug 31 – Sep 21
+</footer>
+
+</body>
+</html>
